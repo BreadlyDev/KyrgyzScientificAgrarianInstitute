@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="{% static 'site/css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'site/css/styles.css' %}">
+    <title>Title</title>
+</head>
+<body>
+    <header class="header">
+        <a href="{% url 'home' %}" class="header-logo">
+            <img src="{% static 'site/icons/leaf-icon.svg' %}" alt="Logo" class="header-logo-image">
+            <p class="header-logo-title">Ph. D. Duishekeev</p>
+        </a>
+        <nav class="header-menu">
+            <ul class="header-menu-list">
+                <li class="header-menu-item burger-button">
+                    <span class="header-menu-item-icon"></span>
+                    <span class="header-menu-item-icon"></span>
+                    <span class="header-menu-item-icon"></span>
+                </li>
+                <li class="header-menu-item">
+                    <a href="{% url 'home' %}" class="header-menu-link">Главная</a>
+                </li>
+                <li class="header-menu-item">
+                    <a href="{% url 'institute' %}" class="header-menu-link">О КирНИИЖ</a>
+                </li>
+                <li class="header-menu-item">
+                    <a href="{% url 'about' %}" class="header-menu-link is-current">Свяжитесь с нами</a>
+                </li>
+            </ul>
+            <div class="header-menu burger visually-hidden burger-button">
+                <ul class="header-menu-list burger">
+                    <li class="header-menu-item burger">
+                        <a href="{% url 'home' %}" class="header-menu-link">Главная</a>
+                    </li>
+                    <li class="header-menu-item burger">
+                        <a href="{% url 'institute' %}" class="header-menu-link">О КирНИИЖ</a>
+                    </li>
+                    <li class="header-menu-item burger">
+                        <a href="{% url 'about' %}" class="header-menu-link is-current">Свяжитесь с нами</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="content">
+        <h1 class="visually-hidden">Свяжитесь с нами</h1>
+        <section class="banner header-margin">
+            <h2 class="visually-hidden">Свяжитесь с нами</h2>
+            <div class="banner-body">
+                    <div class="banner-info inside-element container">
+                        <h3 class="banner-title">Свяжитесь с нами</h3>
+                    </div>
+                <img src="{% static 'site/images/laboratory_kyrniij.png' %}" alt="A cow sitting in a pasture" class="banner-image" loading="lazy">
+            </div>
+        </section>
+        <section class="message-form-section data-section">
+            <h2 class="message-form-title section-title">Напишите нам</h2>
+            <form method="POST" class="message-form">
+                {% csrf_token %}
+                {{form}}
+                <label class="message-form-buttons">
+                    <button type="reset" class="message-form-button cancel">Очистить</button>
+                    <button type="submit" class="message-form-button delete" value="submit">Отправить</button>
+                </label>
+            </form>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-wrapper">
+                <div class="footer-info column links">
+                    <h3 class="footer-column-title">
+                        Навигация
+                    </h3>
+                    <a href="{% url 'home' %}" class="footer-link">
+                        Главная
+                    </a>
+                    <a href="{% url 'institute' %}" class="footer-link">
+                        О КирНИИЖ
+                    </a>
+                    <a href="{% url 'about' %}" class="footer-link">
+                        О нас
+                    </a>
+                </div>
+                <div class="footer-info column contacts">
+                    <h3 class="footer-info-title">
+                        Контакты
+                    </h3>
+                    <div class="footer-info-body">
+                        <address class="footer-address">
+                            <img src="{% static 'site/icons/address-icon.svg' %}" alt="Address Logo">
+                            Институтская, 1 <br/>
+                            с. им. Фрунзе, Сокулукский район, <br/>
+                            Чуйская область, Кыргызстан
+                        </address>
+                        <div class="footer-contacts">
+                            <a href="tel:+996551444096" class="footer-link">
+                                <img src="{% static 'site/icons/phone-icon.svg' %}" alt="Telegram Logo">
+                                Телефон: +996 509 767 611
+                            </a>
+                            <a href="tg://resolve?domain=alisa_usen" target="_blank" class="footer-link">
+                                <img src="{% static 'site/icons/telegram-icon.svg' %}" alt="Telegram Logo">
+                                Telegram: +996 509 767 611
+                            </a>
+                            <a href="https://wa.me/996509767611" class="footer-link">
+                                <img src="{% static 'site/icons/whatsapp-icon.svg' %}" alt="Telegram Logo">
+                                WhatsApp: +996 509 767 611
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-info column map">
+                    <h3 class="footer-location-title">Наше местоположение</h3>
+                    <iframe class="footer-location-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2456.8750804758283!2d74.4318538993193!3d42.92066484657374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389ec4e6fff27f3d%3A0xe2e07b208638d269!2zV0M5SitYVlgg0JrQuNGA0J3QmNCY0JYsINC40LzQtdC90Lgg0KTRgNGD0L3Qt9C1!5e0!3m2!1sru!2skg!4v1715282376685!5m2!1sru!2skg" width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'site/js/script.js' %}"></script>
+</body>
+</html>

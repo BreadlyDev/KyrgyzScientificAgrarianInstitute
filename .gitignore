@@ -1,0 +1,6 @@
+media
+db.sqlite3
+.idea
+content/migrations
+content/__pycache__/*
+main/__pycache__/*

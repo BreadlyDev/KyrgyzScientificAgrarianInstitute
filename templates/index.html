@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+          rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="{% static 'site/css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'site/css/styles.css' %}">
+    <title>Title</title>
+</head>
+<body>
+<header class="header">
+    <a href="{% url 'home' %}" class="header-logo">
+        <img src="{% static 'site/icons/leaf-icon.svg' %}" alt="Logo" class="header-logo-image">
+        <p class="header-logo-title">Ph. D. Duishekeev</p>
+    </a>
+    <nav class="header-menu">
+        <ul class="header-menu-list">
+            <li class="header-menu-item burger-button">
+                <span class="header-menu-item-icon"></span>
+                <span class="header-menu-item-icon"></span>
+                <span class="header-menu-item-icon"></span>
+            </li>
+            <li class="header-menu-item">
+                <a href="{% url 'home' %}" class="header-menu-link is-current">Главная</a>
+            </li>
+            <li class="header-menu-item">
+                <a href="{% url 'institute' %}" class="header-menu-link">О КирНИИЖ</a>
+            </li>
+            <li class="header-menu-item">
+                <a href="{% url 'about' %}" class="header-menu-link">Свяжитесь с нами</a>
+            </li>
+        </ul>
+        <div class="header-menu burger visually-hidden burger-button">
+            <ul class="header-menu-list burger">
+                <li class="header-menu-item burger">
+                    <a href="{% url 'home' %}" class="header-menu-link is-current">Главная</a>
+                </li>
+                <li class="header-menu-item burger">
+                    <a href="{% url 'institute' %}" class="header-menu-link">О КирНИИЖ</a>
+                </li>
+                <li class="header-menu-item burger">
+                    <a href="{% url 'about' %}" class="header-menu-link">Свяжитесь с нами</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<main class="content">
+    <h1 class="visually-hidden">Ph. D. Duishekeev scientific community</h1>
+    <section class="banner header-margin">
+        <h2 class="visually-hidden">Ph. D. Duishekeev scientific community</h2>
+        <div class="banner-body">
+            <div class="banner-info inside-element container">
+                <h3 class="banner-title">Ph. D. Duishekeev scientific community</h3>
+                <p class="banner-description">
+                    „Между наукой и жизнью существует теснейшая, неразрывная, ни для одной из них нимало не унизительная
+                    связь:чем более наука служит жизни, тем более жизнь обогащает науку.“
+                    <br> <q style="font-size: 0.75em; font-weight: 600;">Плеханов Г.В., российский теоретик и
+                    пропагандист марксизма, экономист, философ.</q>
+                    <br>
+                    <br>“Between science and life there is a very close, inseparable, in no way humiliating connection
+                    for either of them: the more science serves life, the more life enriches science.”
+                    <br> <q style="font-size: 0.75em; font-weight: 600;">G. Plekhanov is a Russian theorist and
+                    propagandist of Marxism, economist, philosopher.</q>
+                </p>
+            </div>
+            <img src="{% static 'site/images/cattles-image.jpg' %}" alt="A cow sitting in a pasture"
+                 class="banner-image" loading="lazy">
+        </div>
+    </section>
+
+    {% for i in modules %}
+    {% if i.module_title == "Биография" %}
+    <section class="biography data-section">
+        <h2 class="biography-title section-title">{{i.module_title}}</h2>
+        <div class="biography-body container">
+            <img src="{{i.image.url}}" alt="Ph. D. Duishekeev" class="biography-image" loading="lazy"
+                 width="400px" height="645px">
+            <div class="biography-info">
+                <h3 class="biography-info-title">
+                    {{i.title}}
+                </h3>
+                <p class="biography-info-description">
+                    {{i.description}}
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="slider-section">
+        <div class="container">
+            <div class="slider swiper">
+                <div class="slider-wrapper swiper-wrapper">
+                    {% for i in slider.images.all %}
+                    <div class="swiper-slide">
+                        <img src="{{i.image.url}}" alt="Work" class="slider-image">
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </section>
+    <section class="library data-section">
+        <h2 class="library-title section-title">Книги</h2>
+        <div class="container">
+            <div class="library-wrapper">
+                {% for i in books %}
+                <div class="library-item">
+                    <div class="library-item-image-wrapper">
+                        <img src="{{i.photo.url}}" alt="Book Image" class="library-item-image" width="350px"
+                             height="350px" loading="lazy">
+                    </div>
+                    <div class="library-item-info">
+                        <h3 class="library-item-title">{{i.title}}</h3>
+                        <p class="library-item-description">{{i.description}}</p>
+                        <div class="library-item-action">
+                            <a class="library-item-button" href="{{i.file.url}}" download>Скачать</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% else %}
+    <section class="biography data-section">
+        <h2 class="biography-title section-title">{{i.module_title}}</h2>
+        <div class="biography-body container">
+            <img src="{{i.image.url}}" alt="Ph. D. Duishekeev" class="biography-image" loading="lazy"
+                 width="400px" height="645px">
+            <div class="biography-info">
+                <h3 class="biography-info-title">
+                    {{i.title}}
+                </h3>
+                <p class="biography-info-description">
+                    {{i.description}}
+                </p>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    {% endfor %}
+</main>
+<footer class="footer">
+    <div class="container footer-container">
+        <div class="footer-wrapper">
+            <div class="footer-info column links">
+                <h3 class="footer-column-title">
+                    Навигация
+                </h3>
+                <a href="{% url 'home' %}" class="footer-link">
+                    Главная
+                </a>
+                <a href="{% url 'institute' %}" class="footer-link">
+                    О КирНИИЖ
+                </a>
+                <a href="{% url 'about' %}" class="footer-link">
+                    О нас
+                </a>
+            </div>
+            <div class="footer-info column contacts">
+                <h3 class="footer-info-title">
+                    Контакты
+                </h3>
+                <div class="footer-info-body">
+                    <address class="footer-address">
+                        <img src="{% static 'site/icons/address-icon.svg' %}" alt="Address Logo">
+                        Институтская, 1 <br/>
+                        с. им. Фрунзе, Сокулукский район, <br/>
+                        Чуйская область, Кыргызстан
+                    </address>
+                    <div class="footer-contacts">
+                        <a href="tel:+996551444096" class="footer-link">
+                            <img src="{% static 'site/icons/phone-icon.svg' %}" alt="Telegram Logo">
+                            Телефон: +996 509 767 611
+                        </a>
+                        <a href="tg://resolve?domain=alisa_usen" target="_blank" class="footer-link">
+                            <img src="{% static 'site/icons/telegram-icon.svg' %}" alt="Telegram Logo">
+                            Telegram: +996 509 767 611
+                        </a>
+                        <a href="https://wa.me/996509767611" class="footer-link">
+                            <img src="{% static 'site/icons/whatsapp-icon.svg' %}" alt="Telegram Logo">
+                            WhatsApp: +996 509 767 611
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-info column map">
+                <h3 class="footer-location-title">Наше местоположение</h3>
+                <iframe class="footer-location-map"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2456.8750804758283!2d74.4318538993193!3d42.92066484657374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389ec4e6fff27f3d%3A0xe2e07b208638d269!2zV0M5SitYVlgg0JrQuNGA0J3QmNCY0JYsINC40LzQtdC90Lgg0KTRgNGD0L3Qt9C1!5e0!3m2!1sru!2skg!4v1715282376685!5m2!1sru!2skg"
+                        width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="{% static 'site/js/script.js' %}"></script>
+</body>
+</html>
